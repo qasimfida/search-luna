@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Website</title>
+
+  <!-- Include the CSS file -->
+  <link rel="stylesheet" type="text/css" href="../dist/style.css">
+</head>
+<body>
+  <h1>Welcome to My Website</h1>
+  
+  <div id="searchLib"></div>
+  <!-- Include the JavaScript file -->
+  <script src="../dist/search-lib.umd.cjs"></script>
+  
+  <p>Lorem ipsum</p>
+  <p>Lorem ipsum</p>
+
+  <p>Lorem ipsum</p>
+
+  <p class="mt-96">Lorem ipsum</p>
+  <p class="mt-96">Lorem ipsum</p>
+  <p class="mt-96">Lorem ipsum</p>
+  <p class="mt-96">Lorem ipsum</p>
+  <button id="searchLibBtn" class="bg-blue-500 text-white p-2 rounded-md" onClick="(function(){
+    openSearch();
+    return false;
+})();return false;">Search for a color</button>
+  
+</body>
+</html>
