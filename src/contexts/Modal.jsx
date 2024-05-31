@@ -8,7 +8,7 @@ import { Dialog } from '@/components/ui/dialog';
 export const ModalContext = createContext();
 
 export function ModalProvider({ children }) {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
     const [step, setStep] = useState('1');
     const [hasSearchValue, setHasSearchValue] = useState(false);
     const [isLoading, setIsLoading] = useState(false);

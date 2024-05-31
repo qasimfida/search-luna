@@ -29,7 +29,7 @@ const AuthenticatedApp = () => {
 
   if (!isSignedIn) {
     return (<>
-    <SignInButton/>
+    <RedirectToSignIn/>
 
     </>
     
