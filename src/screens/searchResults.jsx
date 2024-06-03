@@ -3,6 +3,7 @@ import { StepHeader } from "../components/modal/stepHeader";
 import { useModal } from "../components/modal";
 import { RedirectModal } from "../components/modal/redirectModal";
 import { motion } from "framer-motion";
+import { Card } from "@/components/ui/card"
 const NO_IMAGE =
   "https://storage.googleapis.com/luna-colors/lib/no-image-xs.png";
 
@@ -37,6 +38,7 @@ export const SearchResults = ({
 
   return (
     <div className="cc-p-4 xl:cc-p-10 xl:cc-flex xl:cc-flex-col xl:cc-w-65">
+      
       <StepHeader
         stepTitle="Results | Select a color"
         onClick={() => setStep("1")}
@@ -67,6 +69,7 @@ export const SearchResults = ({
                   {color["year"]}
                 </div>
               </div>
+              
               <div
                 className="cc-h-10 xl:cc-h-16 cc-shrink-0 cc-bg-cover md:cc-bg-contain"
                 style={{
@@ -81,6 +84,7 @@ export const SearchResults = ({
               </div>
             </div>
           </motion.div>
+          
         ))}
       </div>
       {!data.length && showModal && (
