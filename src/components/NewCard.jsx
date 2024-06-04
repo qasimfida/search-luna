@@ -1,12 +1,15 @@
 import React from 'react';
 import { motion } from "framer-motion";
-const NewCard = ({ colorCode, colorName, brand, yearRange, imageUrl, onClick }) => {
+const NewCard = ({ colorCode, colorName, brand, yearRange, imageUrl,alternateImageUrl, onClick }) => {
   return (
     <motion.div className="cc-bg-white cc-rounded-lg cc-shadow-md cc-w-full xl:cc-h-[320px] cc-h-[250px] cc-cursor-pointer" onClick={onClick} 
-      whileHover={{ scale: 1.1 }}
+      whileHover={{ scale: 0.9 }}
       whileTap={{ scale: 0.8 }}>
-      <div className="cc-h-[100px] xl:cc-h-[187px] cc-rounded-t-lg cc-bg-cover cc-bg-center" style={{ backgroundImage: `url(${imageUrl})`, backgroundRepeat: "no-repeat", backgroundSize: 'cover' }}></div>
-      <div className="cc-p-4 flex-grow flex flex-col justify-between">
+<motion.div 
+        className="cc-h-[100px] xl:cc-h-[187px] cc-rounded-t-lg cc-bg-cover cc-bg-center" 
+        style={{ backgroundImage: `url(${imageUrl})`, backgroundRepeat: "no-repeat", backgroundSize: 'cover' }}
+        whileHover={{ backgroundImage: `url(${alternateImageUrl})` }}
+      ></motion.div>      <div className="cc-p-4 flex-grow flex flex-col justify-between">
         <div>
           <h2 className="cc-text-lg cc-font-semibold">{colorCode} / {colorName}</h2>
           <p className="cc-text-sm cc-text-gray-600 cc-flex cc-items-center cc-mt-2">
