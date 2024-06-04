@@ -202,11 +202,11 @@ export default function Search() {
 
   return (
     <Modal className={!isLoading && "placeholder-data"}>
-      <div className="cc-flex cc-flex-col cc-min-h-dvh cc-border-solid xl:cc-min-h-fit xl:cc-h-[calc(100dvh-2*1.75rem)] xl:cc-overflow-hidden xl:cc-flex-row">
+       <div className={`cc-flex cc-flex-col  cc-border-solid xl:cc-min-h-fit xl:cc-h-[calc(100dvh-2*1.75rem)] xl:cc-overflow-x-hidden ${step === "1" ? "xl:cc-flex-row cc-justify-center" : "xl:cc-flex-col"}`}>
         
         {!remove && (!isSidebarCollapsed  ? (
           <motion.div
-            className={`cc-bg-white cc-text-white cc-m-auto cc-max-w-full cc-min-w-35 xl:cc-mx-10 md:cc-max-w-[489px] ${hasSearchValue ? "xl:cc-m-0" : ""
+            className={`cc-bg-white cc-text-white cc-w-full cc-m-auto cc-max-w-full cc-min-w-35 xl:cc-mx-10 ${hasSearchValue ? "xl:cc-mx-auto   md:cc-max-w-xl" : " md:cc-max-w-[489px]"
               }`}
             // animate={hasSearchValue ? "cc-w-full shrink" : "initial"}
             animate={{ y: 0 ,
@@ -214,7 +214,7 @@ export default function Search() {
             }}
             variants={initialDivVariants}
             transition={{ duration: 0.8 }}
-            initial={{y: -499}} 
+            initial={{x: -499}} 
           >
             <div
               className={`cc-p-10 cc-m-auto ${hasSearchValue ? "cc-w-full" : "cc-max-w-full md:cc-p-0"

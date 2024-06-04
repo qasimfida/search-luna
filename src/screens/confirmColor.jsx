@@ -7,7 +7,7 @@ import { useModal } from '../contexts/Modal';
 import useRecipeImages from '@/hooks/useRecipeImages';
 import Stripe from 'stripe';
 import { CustomButton } from '@/components/button';
-
+import { motion } from "framer-motion"
 const getPrice = (size, suffix) => {
   const prices = {
     Gallon: {
@@ -111,12 +111,31 @@ export const ConfirmColor = ({
 
     window.location.href = session.url;
   };
+  const initialDivVariants = {
+    initial: { width: "100%" },
+    shrink: { width: "35%" },
+  };
 
   return (
-    <div className="cc-p-10 cc-border-solid cc-flex-grow xl:cc-flex  xl:cc-flex-col xl:cc-w-65">
+    <div className="cc-p-10 cc-border-solid cc-flex-grow xl:cc-flex   xl:cc-flex-col xl:cc-w-100">
       {/* <StepHeader stepTitle="Confirm your Color Choice" onClick={() => setStep('5')} /> */}
-      <h2 className='cc-text-black cc-font-semibold cc-text-center cc-text-2xl'>Confirm your color choice</h2>
-      <div className="cc-flex cc-flex-col cc-flex-grow cc-gap-10 cc-items-center lg:cc-flex-row xl:cc-items-center lg:cc-gap-5 cc-justify-center ">
+      <motion.h2 className='cc-text-black cc-font-semibold cc-text-center cc-text-2xl cc-py-6'
+       animate={{ y: 0 ,
+        x:0
+      }}
+      variants={initialDivVariants}
+      transition={{ duration: 1.1 }}
+      initial={{y: -499}}
+      
+      >Confirm your color choice</motion.h2>
+      <motion.div className="cc-flex cc-flex-col cc-flex-grow cc-gap-10 cc-items-center lg:cc-flex-row xl:cc-items-center lg:cc-gap-5 cc-justify-center "
+       animate={{ y: 0 ,
+        x:0
+      }}
+      variants={initialDivVariants}
+      transition={{ duration: 0.8 }}
+      initial={{y: -499}}
+      >
         <div>
           <h4 className='cc-text-lg cc-text-black cc-font-medium cc-mb-4'>Your Selected Color</h4>
           <div
@@ -181,10 +200,17 @@ export const ConfirmColor = ({
         </div>
 
 
-      </div>
+      </motion.div>
 
       {/* {recipeData.undercoat != '' && ( */}
-      <div className="cc-rounded-lg cc-border cc-border-gray-300 cc-bg-white cc-py-4 cc-my-4">
+      <motion.div className="cc-rounded-lg cc-border cc-border-gray-300 cc-bg-white cc-py-4 cc-my-4"
+       animate={{ y: 0 ,
+        x:0
+      }}
+      variants={initialDivVariants}
+      transition={{ duration: 0.8 }}
+      initial={{x: -499}} 
+      >
         <div>
           <p className="cc-text-black cc-text-lg cc-font-normal cc-text-center">
             *This colour requires an ‘Undercoat color’. This means you must spray the undercoat before you spray the final color.
@@ -230,7 +256,7 @@ export const ConfirmColor = ({
               </div>
 
               <div>
-                <h4 className="cc-text-lg cc-text-black cc-font-medium cc-mb-4">Undercoat you need</h4>
+                <h4 className="cc-text-lg cc-text-black cc-font-medium cc-mb-4">Recommended Undercoat</h4>
                 <div
                   className="cc-w-full cc-rounded-sm cc-cursor-pointer cc-bg-white cc-border-[1px] cc-border-solid cc-border-gray-950 cc-shadow-md"
                   onClick={() => onRecipeClick()}
@@ -272,7 +298,7 @@ export const ConfirmColor = ({
             You can select this on the Luna product page as these are standard undercoats.
           </p>
         </div>
-      </div>
+      </motion.div>
 
       {/* )} */}
     </div>
