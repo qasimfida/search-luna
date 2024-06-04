@@ -51,12 +51,14 @@ export const SearchResults = ({
         transition={{ duration: 0.8 }}
         initial={{ x: -499 }}
       >
-        <Button variant="outline" className="cc-flex cc-gap-2"><span><svg width="18" height="13" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <Button variant="outline" className="cc-flex cc-gap-2 "><span><svg width="18" height="13" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M7 12.8016V10.8016H11V12.8016H7ZM3 7.80164V5.80164H15V7.80164H3ZM0 2.80164V0.801636H18V2.80164H0Z" fill="#1C1B1F" />
         </svg></span>Filter</Button>
       </motion.div> */}
       <div className="cc-grid cc-gap-6 cc-grid-cols-1 sm:cc-grid-cols-2 md:cc-grid-cols-3 md:cc-overflow-x-scroll 2xl:cc-grid-cols-3 lg:cc-overflow-hidden cc-p-4 cc-mx-auto">
-        {data.map((color, index) => (
+        {data.map((color, index) => {
+          console.log(color, 'color')
+          return (
           <motion.div
             initial={{ y: '100vw' }}
             animate={{ y: 0 }}
@@ -100,12 +102,13 @@ export const SearchResults = ({
               colorName={color.name}
               brand={color.fullBrand}
               yearRange={color.year}
+              alternateImageUrl="https://img.freepik.com/premium-psd/white-sport-car-transparent-background-3d-rendering-illustration_494250-66507.jpg?w=996"
               imageUrl={getColorImage(color)}
               onClick={() => handleColor(color)}
             />
           </motion.div>
 
-        ))}
+        )})}
       </div>
       {!data.length && showModal && (
         <div>
