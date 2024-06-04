@@ -3,7 +3,7 @@ import CryptoJS from "crypto-js";
 import useLunaSearch from "../hooks/useLunaSearch";
 import { Modal } from "../components/modal";
 import { useModal } from "../components/modal";
-import Logo from "../assets/logo.png";
+import Logo from "../assets/logo.jpg";
 import useRecipeImages from "../hooks/useRecipeImages";
 import useLunaRecipe from "../hooks/useLunaRecipe";
 import { InitialSearch } from "./initialSearch";
@@ -16,10 +16,12 @@ import { SelectModel } from "./selectModel";
 import { ConfirmColor } from "./confirmColor";
 import { debounce } from "./constants";
 import { motion } from "framer-motion";
-import  { SearchContent } from "../components/modal/accordian";
+import { SearchContent } from "../components/modal/accordian";
 import SearchDrawer from "@/components/modal/searchDrawer";
 import { CustomTooltip } from "@/components/modal/tooltip";
 import { CustomButton } from "@/components/button";
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 
 const BASE_URL = "";
 const NO_IMAGE =
@@ -34,6 +36,9 @@ export default function Search() {
   const [resultsLoader, setResultsLoader] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [baseUrl, setBaseUrl] = useState(BASE_URL);
+  const [showInitialSearch, setShowInitialSearch] = useState(true);
+  const [remove, setRemove] = useState(false);
+
   const {
     step,
     setIsLoading,
@@ -111,6 +116,7 @@ export default function Search() {
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
+    setShowInitialSearch(false)
     if (!isFetching && !advanceSearch) {
       setStep("5");
     }
@@ -121,6 +127,7 @@ export default function Search() {
       setIsLoading(false);
       setSearchTerms({});
       setStep("1");
+      setShowInitialSearch(true);
     }
     setSearchTerms((prev) => ({ ...prev, [name]: value }));
   };
@@ -194,96 +201,118 @@ export default function Search() {
   };
 
   return (
-    <Modal className={!isLoading && "placeholder-data" }>
-      <div className="cc-flex cc-flex-col cc-min-h-dvh cc-border-solid xl:cc-min-h-fit xl:cc-h-[calc(100dvh-2*1.75rem)] xl:cc-overflow-hidden xl:cc-flex-row">
-        {!isSidebarCollapsed ? (
+    <Modal className={!isLoading && "placeholder-data"}>
+       <div className={`cc-flex cc-flex-col  cc-border-solid xl:cc-min-h-fit xl:cc-h-[calc(100dvh-2*1.75rem)] xl:cc-overflow-x-hidden ${step === "1" ? "xl:cc-flex-row cc-justify-center" : "xl:cc-flex-col"}`}>
+        
+        {!remove && (!isSidebarCollapsed  ? (
           <motion.div
-            className={`cc-bg-white cc-text-white cc-m-auto cc-max-w-full cc-min-w-35 md:cc-max-w-35 ${
-              hasSearchValue ? "xl:cc-m-0" : ""
-            }`}
-            animate={hasSearchValue ? "cc-w-full shrink" : "initial"}
+            className={`cc-bg-white cc-text-white cc-w-full cc-m-auto cc-max-w-full cc-min-w-35 xl:cc-mx-10 ${hasSearchValue ? "xl:cc-mx-auto   md:cc-max-w-xl" : " md:cc-max-w-[489px]"
+              }`}
+            // animate={hasSearchValue ? "cc-w-full shrink" : "initial"}
+            animate={{ y: 0 ,
+              x:0
+            }}
             variants={initialDivVariants}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.8 }}
+            initial={{x: -499}} 
           >
             <div
-              className={`cc-p-10 cc-m-auto ${
-                hasSearchValue ? "cc-w-full" : "cc-max-w-full md:cc-p-0"
-              } `}
+              className={`cc-p-10 cc-m-auto ${hasSearchValue ? "cc-w-full" : "cc-max-w-full md:cc-p-0"
+                } `}
             >
-              <div className="cc-mb-6 md:cc-mb-12">
-                <img src={Logo} alt="Logo" className="cc-w-2/3 cc-mx-auto" />
+              <div className="cc-mb-6 cc-flex cc-justify-center ">
+                <img src={Logo} alt="Logo" className="cc-w-[226px]" />
               </div>
 
-              <h3 className="cc-text-xl md:cc-text-3xl cc-text-center cc-uppercase cc-font-heading cc-mb-3 cc-text-black cc-font-black">
+              {/* <h3 className="cc-text-xl md:cc-text-3xl cc-text-center cc-uppercase cc-font-heading cc-mb-3 cc-text-black cc-font-black">
                 Search for your color
-              </h3>
+              </h3> */}
 
               <form id="advanced-search-form" onSubmit={onSearch}>
-                <div className="cc-flex">
-                  <input
+                <div className="cc-flex cc-h-14 cc-rounded-xl cc-border cc-overflow-hidden cc-border-slate-200 cc-bg-white ">
+                  {/* <input
                     type="text"
                     name="q"
                     id="query"
                     onChange={debouncedHandleChange}
-                    placeholder="color code or color name (e.g. LY7C or Nardo Grey)"
+                    placeholder="Color code or color name"
                     className="cc-bg-[rgba(23,23,23,0.027)] hover:cc-bg-[rgba(23,23,23,0.045)] focus:cc-bg-[rgba(23,23,23,0.045)] cc-text-black cc-flex-1 cc-p-3 cc-rounded-md cc-border-r-white cc-placeholder-gray-500 cc-text-base cc-transition-all cc-duration-500 placeholder:cc-text-xs"
-                  />
+                  /> */}
+                  <Input
+                    type="text"
+                    name="q"
+                    id="query"
+                    onChange={debouncedHandleChange}
+                    placeholder="Color code or name"
+                    className="cc-ml-2"
+                    />
+                    
                   <button
                     type="submit"
-                    className="cc-inline-flex cc-ml-2 cc-items-center cc-gap-2 cc-bg-[#6DC3F7] cc-text-white cc-text-lg cc-font-semibold cc-py-3 cc-px-4 md:cc-px-6 cc-rounded-md"
+                    className="cc-inline-flex cc-p-2 cc-w-14 cc-items-center cc-bg-primary cc-text-white cc-text-lg cc-font-semibold cc-rounded-xl "
                   >
                     <img
                       src={searchIcon}
-                      className="cc-h-6 cc-w-6 md:cc-h-8 md:cc-w-8 rotate-icon"
+                      className="rotate-icon"
                       color={"#ffffff"}
                     />
                   </button>
                 </div>
               </form>
-              <div className="cc-flex cc-justify-center cc-items-center cc-gap-2 cc-mt-3">
+              <div className="cc-flex cc-justify-center cc-gap-4 cc-mt-3 cc-mx-10">
                 <CustomTooltip tooltipContent="Coming Soon...">
-                  <CustomButton
+                  <Button variant="outline" onClick={handleAdvanceClick}
+                    disabled={window.innerWidth > 768}
+                    className="cc-w-full cc-text-black">
+                    Advanced Search
+                  </Button>
+                  {/* <CustomButton
                     className="cc-cursor-pointer cc-font-black cc-bg-black cc-text-white cc-py-3 md:cc-w-full"
                     onClick={handleAdvanceClick}
                     disabled={window.innerWidth > 768}
                   >
                     Advanced Search
-                  </CustomButton>
+                  </CustomButton> */}
                 </CustomTooltip>
                 <SearchDrawer
-                  className="cc-block cc-w-full cc-relative md:cc-my-7 md:cc-max-w-[95%] cc-rounded-xl"
+                  className="cc-block cc-w-full cc-relative md:cc-max-w-[95%]"
                   drawerTitle="Search Tips!"
                 >
+                
                   <SearchContent variant="drawer" />
                 </SearchDrawer>
+
               </div>
+             
             </div>
           </motion.div>
         ) : (
           <div className="cc-p-10">
-            <button
+            <Button
               className="cc-px-4 cc-bg-black cc-text-white cc-rounded-full"
               onClick={() => setIsSidebarCollapsed(false)}
             >
               SEARCH
-            </button>
+            </Button>
           </div>
-        )}
+        ))}
 
         {(isFetching || resultsLoader) && <ModalLoader />}
-
-        {!isLoading && !isFetching && step === "1" && hasSearchValue && (
+        {showInitialSearch && !hasSearchValue && (
+       
           <motion.div
             className="cc-flex cc-h-full"
-            initial="hidden"
-            animate="visible"
-            variants={extraDivVariants}
-            transition={{ duration: 0.5 }}
+            animate={{ y: 0 ,
+              x:0
+            }}
+            variants={initialDivVariants}
+            transition={{ duration: 0.8 }}
+            initial={{y: 0 ,x:499}} 
           >
             <InitialSearch isVisible={isVisible} />
           </motion.div>
+     
         )}
-
         {!isLoading && !isFetching && step === "2" && <SelectBrand />}
 
         {!isLoading && !isFetching && step === "3" && <SelectModel />}
@@ -303,6 +332,7 @@ export default function Search() {
 
         {!isLoading && !isFetching && step === "6" && !resultsLoader && (
           <ConfirmColor
+           setRemove={setRemove}
             selectedColor={selectedColor}
             onRecipeClick={onRecipeClick}
             getColorImage={getColorImage}

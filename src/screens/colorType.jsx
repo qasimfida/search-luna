@@ -20,6 +20,7 @@
               <div
                 className={`cc-flex cc-m-auto cc-flex-col cc-h-[120px] ${tile.clrClass} cc-cursor-pointer xl:cc-shrink-0 xl:cc-w-60 ${tile.clrName === 'White' && 'cc-border-2 cc-border-solid cc-border-gray-950'}`} onClick={handleColor}
               />
+              
               <h3 className="cc-text-center">{tile.clrName}</h3>
             </div>
           );
