@@ -20,10 +20,10 @@ export const InitialSearch = ({ isVisible = true }) => {
           animate="visible"
           exit="exit"
         >
-          <h6 className="initial-screen__text cc-font-semibold cc-font-4xl cc-uppercase cc-text-10 cc-text-start cc-leading-relaxed	xl:cc-w-50">
+          <h6 className="initial-screen__text cc-font-semibold cc-font-4xl cc-uppercase cc-text-10 cc-text-start cc-leading-[63px] md:cc-w-60">
             Your Search Results are moments away...
           </h6>
-          <div className="initial-screen__img x:cc-w-50">
+          <div className="initial-screen__img md:cc-w-40">
             <img className='cc-m-auto' src={PaintBucket} alt="Paint Bucket" />
           </div>
         </motion.div>

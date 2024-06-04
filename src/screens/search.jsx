@@ -3,7 +3,7 @@ import CryptoJS from "crypto-js";
 import useLunaSearch from "../hooks/useLunaSearch";
 import { Modal } from "../components/modal";
 import { useModal } from "../components/modal";
-import Logo from "../assets/logo.png";
+import Logo from "../assets/logo.jpg";
 import useRecipeImages from "../hooks/useRecipeImages";
 import useLunaRecipe from "../hooks/useLunaRecipe";
 import { InitialSearch } from "./initialSearch";
