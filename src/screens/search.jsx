@@ -206,7 +206,7 @@ export default function Search() {
         
         {!remove && (!isSidebarCollapsed  ? (
           <motion.div
-            className={`cc-bg-white cc-text-white cc-m-auto cc-max-w-full cc-min-w-35 xl:cc-mx-10 md:cc-max-w-35 ${hasSearchValue ? "xl:cc-m-0" : ""
+            className={`cc-bg-white cc-text-white cc-m-auto cc-max-w-full cc-min-w-35 xl:cc-mx-10 md:cc-max-w-[489px] ${hasSearchValue ? "xl:cc-m-0" : ""
               }`}
             // animate={hasSearchValue ? "cc-w-full shrink" : "initial"}
             animate={{ y: 0 ,
@@ -220,8 +220,8 @@ export default function Search() {
               className={`cc-p-10 cc-m-auto ${hasSearchValue ? "cc-w-full" : "cc-max-w-full md:cc-p-0"
                 } `}
             >
-              <div className="cc-mb-6 md:cc-mb-12">
-                <img src={Logo} alt="Logo" className="cc-w-2/3 cc-mx-auto" />
+              <div className="cc-mb-6 cc-flex cc-justify-center ">
+                <img src={Logo} alt="Logo" className="cc-w-[226px]" />
               </div>
 
               {/* <h3 className="cc-text-xl md:cc-text-3xl cc-text-center cc-uppercase cc-font-heading cc-mb-3 cc-text-black cc-font-black">
@@ -229,7 +229,7 @@ export default function Search() {
               </h3> */}
 
               <form id="advanced-search-form" onSubmit={onSearch}>
-                <div className="cc-flex">
+                <div className="cc-flex cc-h-14 cc-rounded-xl cc-border cc-overflow-hidden cc-border-slate-200 cc-bg-white ">
                   {/* <input
                     type="text"
                     name="q"
@@ -243,25 +243,27 @@ export default function Search() {
                     name="q"
                     id="query"
                     onChange={debouncedHandleChange}
-                    placeholder="Color code or name" />
-
+                    placeholder="Color code or name"
+                    className="cc-ml-2"
+                    />
+                    
                   <button
                     type="submit"
-                    className="cc-inline-flex cc-ml-2 cc-items-center cc-gap-2 cc-bg-[#6DC3F7] cc-text-white cc-text-lg cc-font-semibold cc-py-3 cc-px-4 md:cc-px-6 cc-rounded-md"
+                    className="cc-inline-flex cc-p-2 cc-w-14 cc-items-center cc-bg-primary cc-text-white cc-text-lg cc-font-semibold cc-rounded-xl "
                   >
                     <img
                       src={searchIcon}
-                      className="cc-h-6 cc-w-6 md:cc-h-8 md:cc-w-8 rotate-icon"
+                      className="rotate-icon"
                       color={"#ffffff"}
                     />
                   </button>
                 </div>
               </form>
-              <div className="cc-flex cc-justify-center  cc-gap-4 cc-mt-3 cc-mx-10">
+              <div className="cc-flex cc-justify-center cc-gap-4 cc-mt-3 cc-mx-10">
                 <CustomTooltip tooltipContent="Coming Soon...">
                   <Button variant="outline" onClick={handleAdvanceClick}
                     disabled={window.innerWidth > 768}
-                    className="cc-w-full text-black ">
+                    className="cc-w-full cc-text-black">
                     Advanced Search
                   </Button>
                   {/* <CustomButton
@@ -273,7 +275,7 @@ export default function Search() {
                   </CustomButton> */}
                 </CustomTooltip>
                 <SearchDrawer
-                  className="cc-block cc-w-full cc-relative md:cc-my-7 md:cc-max-w-[95%] cc-rounded-xl"
+                  className="cc-block cc-w-full cc-relative md:cc-max-w-[95%]"
                   drawerTitle="Search Tips!"
                 >
                 

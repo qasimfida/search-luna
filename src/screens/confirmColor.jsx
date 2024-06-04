@@ -169,10 +169,10 @@ export const ConfirmColor = ({
                   {bucket.name}
                 </h3>
 
-                {/* <div className="flex">
+                <div className="flex">
                 <p className="cc-text-black cc-py-2 cc-text-sm">{`$${(getPrice(bucket.name, recipeData.suffix))}`}</p>
                 <CustomButton onClick={(e) => handleCheckout(e, bucket)}>Buy</CustomButton>
-              </div> */}
+              </div>
               </div>
             ))}
 

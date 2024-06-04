@@ -18,18 +18,22 @@ module.exports = {
         "2xl": "1400px",
       },
     },
+    
     extend: {
       width: {
         65: "65%",
         35: "35%",
         50: "50%"
       },
+     
       spacing: {
         65: "65%",
         35: "35%"
       },
       colors: {
         'cc-blue': '#6ac1fc',
+        'primary': "#6DC3F7"
+
       },
       fontFamily: {
         'heading': ['Montserrat', ...defaultTheme.fontFamily.sans],

@@ -59,7 +59,7 @@ export function Modal({ children, ...props }) {
             {...propsRest}
         >
             <CustomModal isOpen={isOpen} onClose={closeModal}>
-                <div className='cc-w-auto cc-relative md:cc-mx-auto md:cc-my-7 md:cc-max-w-[92%]  cc-border-[#ffffff] cc-border-4 cc-rounded-xl'>
+                <div className='cc-w-auto cc-relative md:cc-mx-auto md:cc-my-7 md:cc-max-w-[1280px] cc-rounded-xl'>
                 <div className="cc-relative cc-w-full cc-bg-white cc-overflow-hidden md:cc-rounded lg:cc-min-h-[calc(100dvh-2*1.75rem)]">
                     <button onClick={closeModal} className={`close-btn cc-bg-transparent cc-font-heading ${step === '1' && hasSearchValue ? 'cc-text-white' : '!cc-text-black'} cc-text-4xl cc-absolute cc-top-1 cc-right-2 cc-cursor-pointer`}>&times;</button>
                     {children}
